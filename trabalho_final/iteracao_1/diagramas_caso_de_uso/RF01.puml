@@ -1,0 +1,20 @@
+@startuml RF01
+title Caso de Uso para Requisito 1: Irrigação Adaptativa
+
+left to right direction
+actor Agricultor
+actor "Serviço de Previsão Meteorológica" as ServicoMeteorologico <<sistema externo>>
+
+rectangle "Sistema de Agricultura Inteligente" {
+  usecase UC1 as "Controlar Irrigação\nAdaptativa"
+  Agricultor -- UC1
+  UC1 ..> ServicoMeteorologico : <<usa>>
+
+  note right of UC1
+    O agricultor configura e monitora.
+    O sistema adapta a irrigação
+    automaticamente com base
+    nas previsões e nos parâmetros.
+  end note
+}
+@enduml

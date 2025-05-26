@@ -1,0 +1,20 @@
+@startuml RF04
+title Caso de Uso para Requisito 4: Recomendações de Plantio
+
+left to right direction
+actor Agricultor
+
+rectangle "Sistema de Agricultura Inteligente" {
+  usecase UC4 as "Obter Recomendações\nde Plantio"
+  Agricultor -- UC4
+
+  note right of UC4
+    O sistema analisa dados
+    de solo (fornecidos ou
+    coletados por sensores)
+    para sugerir as melhores
+    opções de cultura, variedade,
+    e técnicas de preparo.
+  end note
+}
+@enduml

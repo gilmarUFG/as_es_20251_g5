@@ -1,0 +1,20 @@
+@startuml RF03
+title Caso de Uso para Requisito 3: Identificação de Problemas e Alertas
+
+left to right direction
+actor Agricultor
+
+rectangle "Sistema de Agricultura Inteligente" {
+  usecase UC3 as "Receber e Gerenciar\nAlertas de Problemas\n(ex: pragas, doenças)"
+  Agricultor -- UC3
+
+  note right of UC3
+    O sistema identifica problemas
+    (ex: através de sensores, análise de
+    imagens, ou dados manuais) e
+    notifica o agricultor.
+    O agricultor visualiza e pode
+    registrar ações tomadas.
+  end note
+}
+@enduml

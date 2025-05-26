@@ -1,0 +1,19 @@
+@startuml RF05
+title Caso de Uso para Requisito 5: Previsão de Colheita
+
+left to right direction
+actor Agricultor
+
+rectangle "Sistema de Agricultura Inteligente" {
+  usecase UC5 as "Obter Previsão de\nMelhor Momento para Colheita"
+  Agricultor -- UC5
+
+  note right of UC5
+    O sistema analisa dados
+    atuais e históricos do solo,
+    clima, e da cultura para
+    estimar a data ou período
+    ideal para a colheita.
+  end note
+}
+@enduml

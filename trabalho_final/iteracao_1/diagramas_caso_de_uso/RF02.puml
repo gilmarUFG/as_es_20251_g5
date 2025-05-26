@@ -1,0 +1,43 @@
+@startuml RF02
+title Caso de Uso para Requisito 2: Rede de Sensores e Automação
+
+left to right direction
+actor Agricultor
+actor "Rede de Sensores" as RedeSensores <<hardware>>
+
+rectangle "Sistema de Agricultura Inteligente" {
+  usecase UC2_Monitorar as "Monitorar Dados da Plantação\n(Umidade, Temp, pH, Nutrientes)"
+  usecase UC2_Irrigacao as "Gerenciar Irrigação\nAutomatizada por Zona"
+  usecase UC2_Fertilizacao as "Gerenciar Fertilização\nAutomatizada por Zona"
+
+  Agricultor -- UC2_Monitorar
+  Agricultor -- UC2_Irrigacao
+  Agricultor -- UC2_Fertilizacao
+
+  (UC2_Monitorar) <.. RedeSensores : <<fornece dados para>>
+  (UC2_Irrigacao) <.. RedeSensores : <<usa dados de>>
+  (UC2_Fertilizacao) <.. RedeSensores : <<usa dados de>>
+
+
+  note top of RedeSensores
+    Coleta dados em tempo real
+    do solo (umidade, temperatura,
+    pH, nutrientes) por zona.
+  end note
+
+  note bottom of UC2_Monitorar
+    Visualização dos dados
+    coletados pelos sensores.
+  end note
+
+  note bottom of UC2_Irrigacao
+    Configuração de regras para
+    irrigação personalizada.
+  end note
+
+   note bottom of UC2_Fertilizacao
+    Configuração de regras para
+    fertilização personalizada.
+  end note
+}
+@enduml
