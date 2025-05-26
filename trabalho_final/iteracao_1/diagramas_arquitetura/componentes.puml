@@ -1,0 +1,121 @@
+@startuml Componentes
+
+
+title Diagrama de Componentes (Estilo C4 Simulado) - Contêiner: Aplicação Backend (API)
+
+skinparam defaultTextAlignment center
+skinparam rectangle {
+    StereotypeFontSize 0
+    shadowing false
+    Padding 10
+    RoundCorner 10
+}
+skinparam component {
+    StereotypeFontSize 0
+    shadowing false
+    RoundCorner 10
+    BackgroundColor MintCream
+    BorderColor ForestGreen
+}
+skinparam package {
+    StereotypeFontSize 0
+    shadowing false
+    borderColor #444444
+    backgroundColor #FFFFFF
+    titleFontColor #333333
+    titleFontSize 16
+    titleAlignment left
+    RoundCorner 15
+    Padding 20
+}
+skinparam arrow {
+    Color #555555
+    FontColor #505050
+    FontSize 10
+}
+skinparam note {
+    BackgroundColor LightYellow
+    BorderColor # siga_ANTIGO
+    FontSize 10
+    Padding 5
+}
+
+
+' --- Elementos Externos (Outros Contêineres e Sistemas) ---
+rectangle "<b>Aplicação Frontend</b>\nInterface Web/Mobile\n(ReactJS, React Native)" as frontend_user_interface <<FrontendApp>> #AliceBlue;line:SteelBlue;text:black
+rectangle "<b>Banco de Dados</b>\n(PostgreSQL, MongoDB)" as database_container <<Database>> #LightGoldenRodYellow;line:GoldenRod;text:black
+rectangle "<b>Gateways IoT</b>\n(ESP32/RPi, MQTT)" as iot_gateways_system <<ExternalSystem>> #LightGrey;line:DimGrey;text:black
+rectangle "<b>APIs Meteorológicas Externas</b>\n(OpenWeatherMap, etc.)" as external_weather_apis_system <<ExternalAPI>> #LightGrey;line:DimGrey;text:black
+rectangle "<b>Sistemas de Automação (Atuadores)</b>\nHardware de irrigação/fertilização" as automation_actuators_system <<ActuatorSystem>> #LightGrey;line:DimGrey;text:black
+
+
+' --- Limite do Contêiner "Aplicação Backend (API)" ---
+package "Aplicação Backend (API)\n(FastAPI - Python, Celery)" as backend_container {
+
+    component "<b>Serviços API (Controller)</b>\n(FastAPI - Python)" as api_services
+    note bottom of api_services
+      Ponto de entrada para requisições (HTTPS/JSON),
+      roteamento, autenticação (OAuth 2.0, JWT), validação.
+      Orquestra as operações e expõe
+      funcionalidades dos módulos internos.
+    end note
+
+    component "<b>Módulo de Coleta de Dados</b>\n(Python, MQTT Client)" as data_collection_module
+    note bottom of data_collection_module
+      Integração com Gateways IoT (MQTT)
+      para ingestão de dados dos sensores e
+      com APIs Meteorológicas Externas (HTTPS).
+    end note
+
+    component "<b>Módulo de Processamento Analítico (Model)</b>\n(Python, Scikit-learn, TensorFlow/PyTorch, Pandas)" as analytics_processing_module
+    note bottom of analytics_processing_module
+      Análise de dados, modelagem preditiva
+      (previsão de colheita), detecção de problemas (pragas),
+      geração de recomendações (plantio).
+    end note
+
+    component "<b>Módulo de Automação</b>\n(Python, Celery - Tarefas Assíncronas)" as automation_module
+    note bottom of automation_module
+      Processa regras de negócio e insights
+      do módulo analítico para acionar
+      irrigação/fertilização. Gerencia tarefas assíncronas.
+    end note
+
+    component "<b>Módulo de Notificações</b>\n(Python)" as notification_module
+    note bottom of notification_module
+      Gera e envia alertas e notificações
+      para os usuários (via Push para Frontend,
+      Email, SMS - integração com serviços específicos).
+    end note
+
+    component "<b>Módulo de Relatórios</b>\n(Python)" as reporting_module
+    note bottom of reporting_module
+      Gera e disponibiliza dados agregados
+      para relatórios e dashboards a serem
+      exibidos no frontend.
+    end note
+}
+
+api_services --> data_collection_module : Delega/Coordena coleta de dados
+api_services --> analytics_processing_module : Solicita e expõe resultados de\nanálises e recomendações
+api_services --> automation_module : Gerencia configurações e\ndispara ações de automação
+api_services --> notification_module : Aciona envio de\nnotificações/alertas
+api_services --> reporting_module : Fornece dados consolidados\npara relatórios/dashboards
+
+data_collection_module --> analytics_processing_module : Fornece dados brutos/pré-processados\npara análise
+
+analytics_processing_module --> automation_module : Fornece insights, gatilhos e\ndecisões para automação
+analytics_processing_module --> notification_module : Dispara eventos que originam\nalertas/notificações
+analytics_processing_module --> reporting_module : Fornece dados analisados e insights
+
+api_services ..> frontend_user_interface : Serve dados e recebe comandos de\n(HTTPS/JSON)
+data_collection_module ..> iot_gateways_system : Consome dados de sensores de\n(MQTT/HTTPS)
+data_collection_module ..> external_weather_apis_system : Consome dados de previsão de\n(HTTPS/JSON)
+data_collection_module ..> database_container : Armazena dados brutos e de sensores\n(TCP/IP)
+analytics_processing_module ..> database_container : Lê dados históricos/configurações,\narmazena modelos e resultados analíticos\n(TCP/IP)
+automation_module ..> database_container : Lê configurações/regras,\nregistra logs de ações de automação\n(TCP/IP)
+automation_module ..> automation_actuators_system : Envia comandos de controle para\n(Modbus/API/MQTT)
+notification_module ..> frontend_user_interface : Envia notificações/alertas para\n(ex: via Push Notifications)\n(HTTPS)
+reporting_module ..> database_container : Lê e agrega dados para relatórios\n(TCP/IP)
+
+@enduml
