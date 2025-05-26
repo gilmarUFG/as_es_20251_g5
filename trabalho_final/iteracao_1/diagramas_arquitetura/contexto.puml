@@ -1,0 +1,34 @@
+@startuml
+
+
+Person(farmer, "Agricultor")
+Person(technician, "Técnico Agrícola")
+System_Boundary(system, "Sistema de Irrigação Inteligente") {
+
+    Container(webApp, "Frontend Web", "ReactJS", "Interface para monitoramento e controle")
+    Container(mobileApp, "Aplicativo Mobile", "React Native", "Interface móvel para monitoramento e notificações")
+    Container(api, "Backend API", "FastAPI (Python)", "Exposição de serviços e regras de negócio")
+    Container(worker, "Processamento Assíncrono", "Celery + RabbitMQ", "Executa tarefas em background")
+    ContainerDb(relationalDb, "Banco de Dados Relacional", "PostgreSQL + PostGIS", "Armazena dados estruturados e geoespaciais")
+    ContainerDb(documentDb, "Banco de Dados Não Relacional", "MongoDB", "Armazena dados não estruturados e logs")
+    Container(iotGateway, "Gateway IoT", "ESP32 / Raspberry Pi", "Agrega dados dos sensores e envia para o backend")
+
+}
+
+System_Ext(weatherAPI, "API Meteorológica")
+System_Ext(sensors, "Rede de Sensores IoT")
+
+farmer -> webApp : Interage via Web
+technician -> webApp : Interage via Web
+farmer -> mobileApp : Recebe notificações
+webApp -> api : Requisições HTTP
+mobileApp -> api : Requisições HTTP
+api -> relationalDb : CRUD de dados
+api -> documentDb : Armazenamento de dados não estruturados
+api -> worker : Envia tarefas assíncronas
+worker -> relationalDb : Processa e armazena resultados
+iotGateway -> api : Publica dados via MQTT/HTTP
+api -> weatherAPI : Consulta previsões
+sensors -> iotGateway : Envia dados via LoRaWAN/MQTT
+
+@enduml
