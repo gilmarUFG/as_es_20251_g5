@@ -1,0 +1,13 @@
+@startuml
+actor Software
+
+usecase "Iniciar monitoramento de umidade" as UC1
+usecase "Coletar dados do sensor" as UC2
+usecase "Avaliar se umidade está abaixo do ideal" as UC3
+usecase "Acionar sistema de irrigação" as UC4
+
+Software --> UC1
+UC1 --> UC2 : <<include>>
+UC2 --> UC3 : <<include>>
+UC3 --> UC4 : <<extend>>
+@enduml
