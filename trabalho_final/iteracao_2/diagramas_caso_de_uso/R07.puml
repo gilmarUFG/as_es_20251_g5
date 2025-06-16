@@ -1,0 +1,15 @@
+@startuml
+actor Software
+
+usecase "Coletar imagens e dados dos sensores IoT" as UC1
+usecase "Analisar dados com IA" as UC2
+usecase "Detectar presença de pragas" as UC3
+usecase "Recomendar ações preventivas" as UC4
+usecase "Reduzir uso de agrotóxicos" as UC5
+
+Software --> UC1
+UC1 --> UC2 : <<include>>
+UC2 --> UC3 : <<include>>
+UC3 --> UC4 : <<extend>>
+UC4 --> UC5 : <<extend>>
+@enduml
