@@ -1,0 +1,16 @@
+@startuml
+actor Software
+
+usecase "Coletar dados dos sensores de máquinas e plantio" as UC1
+usecase "Monitorar condições de equipamentos agrícolas" as UC2
+usecase "Analisar pressão, temperatura, óleo e segurança" as UC3
+usecase "Prever necessidade de manutenção" as UC4
+usecase "Notificar usuário via aplicativo" as UC5
+
+Software --> UC1
+UC1 --> UC2 : <<include>>
+UC2 --> UC3 : <<include>>
+UC3 --> UC4 : <<extend>>
+UC3 --> UC5 : <<extend>>
+
+@enduml
