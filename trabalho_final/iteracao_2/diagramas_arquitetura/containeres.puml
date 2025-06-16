@@ -1,0 +1,33 @@
+@startuml Containeres
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Diagrama de Contêineres - Sistema de Monitoramento e Automação Agrícola
+
+Person(agricultor, "Agricultor/Técnico", "Usuário que monitora a plantação, configura automações e recebe alertas/recomendações.")
+
+System_Ext(sensores_iot, "Sensores de Solo, Clima e Máquinas (IoT)", "Dispositivos de campo (LoRa, Zigbee, Wi-Fi) que coletam dados de umidade, temperatura, pH, nutrientes, imagens e estado de equipamentos.")
+System_Ext(apis_meteorologicas, "APIs Meteorológicas Externas", "Fornece dados de previsão do tempo (umidade, chuva, seca). Ex: OpenWeatherMap, Meteostat.")
+System_Ext(sistemas_automacao, "Sistemas de Automação (Atuadores)", "Hardware de irrigação e fertilização que recebe comandos (via Modbus, APIs) e atua no campo.")
+System_Ext(servicos_ia_externos, "Serviços de IA Externa", "Plataformas de Machine Learning (Visão Computacional, Análise Preditiva) para modelos complexos.")
+
+System_Boundary(c1, "Sistema de Monitoramento e Automação Agrícola") {
+Container(frontend, "Aplicação Frontend", "ReactJS, React Native", "Interface Web/Mobile para interação com o usuário: dashboards, alertas, relatórios, recomendações e configurações. **Suporta modo offline com cache e sincronização.**")
+Container(backend_api, "Aplicação Backend (API)", "FastAPI (Python), Celery", "Serviços de controle, orquestração, processamento de dados (incluindo IA/ML para pragas, manutenção, produção), lógica de negócio e APIs para o frontend.")
+ContainerDb(database, "Banco de Dados", "PostgreSQL (Relacional, PostGIS), MongoDB (NoSQL)", "Armazena dados de sensores (incluindo imagens), usuários, configurações, análises, recomendações, histórico de ações e **dados para sincronização offline**.")
+Container(gateways_iot, "Gateways IoT", "ESP32/Raspberry Pi, MQTT", "Coleta dados dos sensores via comunicação sem fio, realiza pré-processamento local e envia para o backend via MQTT. **Pode receber configurações e comandos do backend.**")
+
+Rel(agricultor, frontend, "Usa", "HTTPS")
+Rel_Back(frontend, backend_api, "Consome", "HTTPS/JSON (JWT Auth)") // for JWT
+Rel(frontend, database, "Acessa cache local", "SQLite/IndexedDB (para modo offline)")
+
+Rel(backend_api, database, "Lê/Escreve", "TCP/IP")
+Rel(backend_api, apis_meteorologicas, "Obtém dados meteorológicos", "HTTPS/JSON")
+Rel(backend_api, gateways_iot, "Recebe dados e envia comandos/configurações", "MQTT/HTTPS")
+Rel(backend_api, sistemas_automacao, "Envia comandos de controle", "Modbus/API MQTT") // for Modbus
+Rel(backend_api, servicos_ia_externos, "Consome modelos de IA", "HTTPS/JSON")
+
+Rel(gateways_iot, sensores_iot, "Coleta dados de", "LoRaWAN, Zigbee, Wi-Fi") // for LoRa
+}
+@enduml

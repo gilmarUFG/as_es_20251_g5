@@ -1,0 +1,39 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(farmer, "Agricultor", "Usuário final do sistema, interage para monitorar, configurar e receber alertas/recomendações.")
+Person(technician, "Técnico Agrícola", "Usuário com acesso avançado para diagnóstico, configuração e análise de dados técnicos.")
+System_Boundary(system, "Sistema de Irrigação Inteligente e Agricultura de Precisão") {
+
+Container(webApp, "Frontend Web", "ReactJS", "Interface Web para monitoramento detalhado, configuração de automações, visualização de relatórios e recomendações. **Gerencia cache e sincronização de dados offline.**")
+Container(mobileApp, "Aplicativo Mobile", "React Native", "Interface móvel para monitoramento em campo, recebimento de alertas em tempo real e visualização de informações rápidas. **Suporta operação e sincronização offline.**")
+Container(api, "Backend API", "FastAPI (Python)", "Exposição de serviços (REST, GraphQL), lógica de negócio central, autenticação, orquestração de módulos de IA/ML, automação e sincronização de dados.")
+Container(worker, "Processamento Assíncrono", "Celery + RabbitMQ", "Executa tarefas de longa duração em background, como processamento de imagens, treinamento de modelos de ML, geração de relatórios complexos e acionamento de automações agendadas.")
+ContainerDb(relationalDb, "Banco de Dados Relacional", "PostgreSQL + PostGIS", "Armazena dados estruturados (usuários, configurações, histórico de automações) e geoespaciais (mapas de zonas de plantio, localização de sensores). **Inclui dados para sincronização offline.**")
+ContainerDb(documentDb, "Banco de Dados Não Relacional", "MongoDB", "Armazena dados não estruturados de sensores (incluindo metadados de imagens), logs de sistema e dados de telemetria de equipamentos.")
+Container(iotGateway, "Gateway IoT", "ESP32 / Raspberry Pi", "Agrega dados de diversos tipos de sensores (solo, clima, equipamentos, câmeras), realiza pré-processamento local e os envia para o backend. **Pode receber comandos e configurações para atuadores.**")
+
+}
+
+System_Ext(weatherAPI, "API Meteorológica", "Serviços externos para obtenção de dados de previsão do tempo (temperatura, umidade, chuva).")
+System_Ext(sensors, "Rede de Sensores IoT", "Dispositivos de campo: Sensores de solo (umidade, pH, nutrientes), sensores climáticos, câmeras (para pragas), sensores de máquinas agrícolas (pressão, temperatura).")
+System_Ext(actuators, "Sistemas de Atuadores", "Hardware de campo que executa ações controladas, como válvulas de irrigação, dosadores de fertilizantes, sistemas de controle de maquinário.")
+System_Ext(aiServices, "Serviços de IA/ML Externos", "Plataformas de nuvem ou APIs especializadas para modelos de visão computacional (detecção de pragas), análise preditiva (manutenção) e otimização (produção).")
+
+farmer -> webApp : Interage via Web
+technician -> webApp : Interage via Web
+farmer -> mobileApp : Monitora e recebe notificações
+webApp -> api : Requisições HTTP/REST
+mobileApp -> api : Requisições HTTP/REST
+api -> relationalDb : CRUD de dados estruturados
+api -> documentDb : Armazenamento de dados não estruturados e logs
+api -> worker : Envia tarefas assíncronas (processamento IA, relatórios)
+worker -> relationalDb : Processa e armazena resultados complexos
+worker -> documentDb : Armazena resultados de processamento
+iotGateway -> api : Publica dados de sensores (MQTT/HTTP)
+api -> weatherAPI : Consulta previsões
+sensors -> iotGateway : Envia dados (LoRaWAN/MQTT/Zigbee/Wi-Fi)
+api -> actuators : Envia comandos de controle (Modbus/API/MQTT)
+api -> aiServices : Consulta/envia dados para análise de IA/ML
+worker -> aiServices : Executa processamento de IA em background
+@enduml
