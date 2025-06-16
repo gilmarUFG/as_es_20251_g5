@@ -1,0 +1,14 @@
+@startuml
+actor Usuário
+
+usecase "Usar o sistema offline" as UC1
+usecase "Salvar dados localmente" as UC2
+usecase "Detectar conexão com a internet" as UC3
+usecase "Sincronizar dados com o servidor" as UC4
+
+Usuário --> UC1
+UC1 --> UC2 : <<include>>
+UC1 --> UC3 : <<include>>
+UC3 --> UC4 : <<extend>>
+UC2 --> UC4 : <<extend>>
+@enduml
