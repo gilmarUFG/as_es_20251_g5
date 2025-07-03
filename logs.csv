@@ -1,0 +1,200 @@
+commit eef969e063c76c211331c02ef5f838e0814ec085
+Author: Gilmar Ferreira Arantes <gilmar.arantes@ufg.br>
+Date:   Mon Jun 30 11:06:27 2025 -0300
+
+    update repository
+
+commit 1c531b82ea5acab6ba02ac599a08cf5d67809be3
+Merge: 7b6dafb 7a0099b
+Author: Gilmar Ferreira Arantes <gilmar.arantes@ufg.br>
+Date:   Mon Jun 30 10:07:11 2025 -0300
+
+    Merge branch 'estudante'
+
+commit 7b6dafb27519bd79054d612a004b4376b2cdfdca
+Author: Gilmar Ferreira Arantes <gilmar.arantes@ufg.br>
+Date:   Sun Jun 29 12:39:10 2025 -0300
+
+    update repository
+
+commit 2fa5649c8c171f9d4658f3ac3508e325154a69ed
+Author: Gilmar Ferreira Arantes <gilmar.arantes@ufg.br>
+Date:   Wed Jun 25 20:12:56 2025 -0300
+
+    corrigindo atividades
+
+commit 7a0099b0e4901ab4ba7695cb0c9681f5b3e90918
+Author: Leonardo Moreira <leonardomoreira@discente.ufg.br>
+Date:   Wed Jun 25 15:12:05 2025 -0300
+
+    Slides da Apresentação
+    
+    Adicionando os slides da apresentação do trabalho final
+
+commit 805f16bcbbc717a14407a7640a2ed7e8594663ff
+Author: Leonardo Moreira <moreira.leonardo83@outlook.com>
+Date:   Mon Jun 16 20:57:35 2025 -0300
+
+    add: Atualização dos diagramas arquiteturais baseado na segunda iteração
+
+commit 5fe4a839a15e84f33d1da9194a515aa2dd512ea2
+Author: João Gabriel <106777850+mentejoao@users.noreply.github.com>
+Date:   Mon Jun 16 14:29:58 2025 -0300
+
+    Create R08.puml
+
+commit a6d937148d0fa75588cd0e41d1e91e5e692f305c
+Author: João Gabriel <106777850+mentejoao@users.noreply.github.com>
+Date:   Mon Jun 16 14:28:46 2025 -0300
+
+    Create R07.puml
+
+commit 980f7ea364a1eeaa05344257b1496bfddc317267
+Author: João Gabriel <106777850+mentejoao@users.noreply.github.com>
+Date:   Mon Jun 16 14:27:19 2025 -0300
+
+    Create R10.puml
+
+commit 60e558aaa93421c8ad891dd93bd22d42f1dadd6b
+Author: João Gabriel <106777850+mentejoao@users.noreply.github.com>
+Date:   Mon Jun 16 14:24:44 2025 -0300
+
+    Create R09.puml
+
+commit e7afebf5705293d5240d9aea758ca665b04ae99f
+Author: João Gabriel <106777850+mentejoao@users.noreply.github.com>
+Date:   Mon Jun 16 14:19:40 2025 -0300
+
+    Create R06.puml
+
+commit 24c62d9426733980ea97be7d42a9ea71c5ab3a12
+Author: João Gabriel <106777850+mentejoao@users.noreply.github.com>
+Date:   Mon Jun 16 13:54:44 2025 -0300
+
+    Update DocumentoArquitetura.md
+
+commit c9a563e3c70faebef6ead202b6ad60af8fab6695
+Author: Leonardo Moreira <leonardomoreira@discente.ufg.br>
+Date:   Mon May 26 23:21:27 2025 -0300
+
+    Update contexto.puml
+    
+    adicionando extensão
+
+commit 4e2db88f8ef527872f2d5091de00e3d92f337ba9
+Author: matheuscascao <matheusfranco23@hotmail.com>
+Date:   Mon May 26 20:01:00 2025 -0300
+
+    feat: atividade prática 5
+
+commit 3fa98f4f4ac016534ec00aa718b13c3289422139
+Merge: 3855844 0864c14
+Author: Gilmar Ferreira Arantes <gilmar.arantes@ufg.br>
+Date:   Mon May 26 19:12:27 2025 -0300
+
+    Merge branch 'main' into estudante
+
+commit 0864c14df7d8c541e9a22991e16b39056c2dfaeb
+Author: Gilmar Ferreira Arantes <gilmar.arantes@ufg.br>
+Date:   Mon May 26 19:08:55 2025 -0300
+
+    update repository
+
+commit 3855844a1df0fa3b16c57086afb2e137ecfbd3ae
+Author: João Gabriel <106777850+mentejoao@users.noreply.github.com>
+Date:   Mon May 26 17:24:40 2025 -0300
+
+    Create contexto.puml
+
+commit 870030a355f2250dd6745ef205e9903bf65faf91
+Author: JairRodrigues <jairsmr2019@gmail.com>
+Date:   Mon May 26 16:59:05 2025 -0300
+
+    Adding C4 model containers diagrams - architecture
+
+commit 5ddfff8a8c5f495b50945359e35c3d59a04b52f8
+Author: JairRodrigues <jairsmr2019@gmail.com>
+Date:   Mon May 26 16:57:53 2025 -0300
+
+    Adding C4 model component diagrams - architecture
+
+commit 47f969027afa8ba0f9afbe867294b77ba0beb8da
+Author: JairRodrigues <jairsmr2019@gmail.com>
+Date:   Mon May 26 16:33:38 2025 -0300
+
+    Adding use case diagrams - iteration 1
+
+commit c931b0400f180ab43c48e056ca39ad01275b1155
+Author: João Gabriel <106777850+mentejoao@users.noreply.github.com>
+Date:   Mon May 26 16:24:39 2025 -0300
+
+    Delete trabalho_grupo directory
+
+commit 0e2f6a005ceea2ec742d485107ff662ce2399e14
+Author: João Gabriel <106777850+mentejoao@users.noreply.github.com>
+Date:   Mon May 26 16:23:29 2025 -0300
+
+    Create DocumentoArquitetura.md
+
+commit c30c3ef06ce57d0c219a27962aaa5a125a602247
+Author: João Gabriel <106777850+mentejoao@users.noreply.github.com>
+Date:   Mon May 26 16:22:31 2025 -0300
+
+    Create DocumentoArquitetura.md
+
+commit 18e6c3a444c54fd7058a84ad369d51392afb0eb2
+Author: Leonardo Moreira <moreira.leonardo83@outlook.com>
+Date:   Mon May 26 13:03:35 2025 -0300
+
+    Adicionando os requisitos selecionados previamente
+
+commit f59d454eacf96b4dee04b1c5578753c0b24ac19f
+Author: matheuscascao <matheusfranco23@hotmail.com>
+Date:   Sun May 11 17:38:47 2025 -0300
+
+    feat: as5
+
+commit f23f9b3458caf3283e45e637353fde5cd2e60086
+Merge: aaaa186 164092e
+Author: Matheus Cascão <matheusfranco23@hotmail.com>
+Date:   Sun Apr 27 18:45:49 2025 -0300
+
+    Merge pull request #1 from gilmarUFG/matheuscascao-patch-1
+    
+    Add files via upload
+
+commit 164092ea7353b8c8a4282e36c00ce0c87e997ca2
+Author: Matheus Cascão <matheusfranco23@hotmail.com>
+Date:   Sun Apr 27 18:45:40 2025 -0300
+
+    Add files via upload
+
+commit aaaa186a6287a73b5e37722ca9ad40f4d876b232
+Author: Gilmar Ferreira Arantes <gilmar.arantes@ufg.br>
+Date:   Sat Apr 19 12:47:29 2025 -0300
+
+    update repository
+
+commit d0d7d34ade4b4f8b7ebbfdc6084d52d0114e99c2
+Author: Leonardo Moreira <leonardomoreira@discente.ufg.br>
+Date:   Mon Mar 24 21:38:03 2025 -0300
+
+    Create atividade_em_sala_2.md
+
+commit aa692563736887de49611b4167e7b357367e8e6c
+Author: João Gabriel <106777850+mentejoao@users.noreply.github.com>
+Date:   Mon Mar 17 21:13:39 2025 -0300
+
+    Create atividade_em_sala_1.md
+
+commit 357507874f098316dfe6c9d70d520749e7a4a396
+Author: Gilmar Ferreira Arantes <gilmar.arantes@ufg.br>
+Date:   Fri Feb 28 17:02:16 2025 -0300
+
+    Update README.md file.
+
+commit 5b4c65580e444a63dcbf48bf4afeb389d093552c
+Author: Gilmar Ferreira Arantes <130784207+gilmarUFG@users.noreply.github.com>
+Date:   Fri Feb 28 14:32:05 2025 -0300
+
+    Initial commit
